@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+//Naive Solution O(N)
 int findPeakElement(vector<int> &nums)
 {
     if (nums[0] > nums[1])
@@ -16,7 +17,30 @@ int findPeakElement(vector<int> &nums)
     }
     return -1;
 }
-int main(){
+// O (Log n) implementation using binary Search.
+int findPeakElement2(vector<int> &nums)
+{
+    int l = 0, h = nums.size() - 1, mid;
+    while (l <= h)
+    {
+        mid = (l + h) / 2;
+        if (mid == 0 || mid == nums.size() - 1 || (nums[mid] > nums[mid + 1] && nums[mid] > nums[mid - 1]))
+        {
+            return mid;
+        }
+        else if (nums[mid] > nums[l])
+        {
+            l = mid + 1;
+        }
+        else
+        {
+            h = mid - 1;
+        }
+    }
+    return -1;
+}
+int main()
+{
     vector<int> v{1, 2, 3, 1};
-    findPeakElement(v);
+    cout << findPeakElement2(v);
 }
