@@ -19,7 +19,8 @@ public:
             }
         }
         if (digits[0] == 0)
-            digits.insert(digits.begin(), 1);
+            digits[0] = 1;
+        digits.push_back(0);
         return digits;
     }
 };
